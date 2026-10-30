@@ -25,22 +25,31 @@
 <body>
   <canvas id="unity-canvas" tabindex="0"></canvas>
   <div class="top"><div class="eyebrow">Wrexham · Cymru</div><h1>Racecourse in Golden Light</h1><div class="sub">A painted, interactive stadium study</div></div>
-  <div class="controls" aria-label="Camera views"><button id="overview" class="active">Overview</button><button id="pitch">Pitch</button><button id="stand">Stand</button></div>
-  <div class="hint">Drag to orbit · Scroll to zoom · R to reset</div>
-  <div id="loading"><div class="dragon">Y Ddraig Goch</div><div class="loadtitle">Painting the Racecourse</div><div class="loadsub">Preparing the ground in golden light</div><div class="track"><div class="bar" id="bar"></div></div><div id="percent">0%</div></div>
+  <div class="controls" aria-label="Camera views"><button id="overview" class="active">Overview</button><button id="pitch">Pitch</button><button id="stand">Stand</button><button id="walk">Walk</button></div>
+  <div class="hint" id="hint">Drag to orbit · Scroll to zoom · R to reset</div>
+  <div id="loading"><div class="dragon">Y Ddraig Goch</div><div class="loadtitle">Painting the Racecourse</div><div class="loadsub" id="loadsub">Downloading the detailed stadium</div><div class="track"><div class="bar" id="bar"></div></div><div id="percent">0%</div></div>
   <div id="error"><div><h2>Unable to start the 3D scene</h2><p id="errorText">This experience needs a browser with WebGL 2 enabled.</p></div></div>
   <script src="Build/web.loader.js"></script>
   <script>
     const canvas=document.querySelector('#unity-canvas');
     const config={dataUrl:'',frameworkUrl:'Build/web.framework.js.unityweb',codeUrl:'Build/web.wasm.unityweb',streamingAssetsUrl:'StreamingAssets',companyName:'Local Studio',productName:'Racecourse in Golden Light',productVersion:'1.0'};
     let game;
-    function view(name){if(game)game.SendMessage('CameraRig','SetView',name);document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.id===name));canvas.focus()}
+    function progress(value){const percent=Math.min(100,Math.round(value));document.querySelector('#bar').style.width=percent+'%';document.querySelector('#percent').textContent=percent+'%'}
+    function view(name){if(game)game.SendMessage('CameraRig','SetView',name);document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.id===name));document.querySelector('#hint').textContent=name==='walk'?'WASD / arrows to move · Mouse to look · Shift to hurry · R for overview':'Drag to orbit · Scroll to zoom · R to reset';canvas.focus()}
     document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>view(b.id)));
+    document.addEventListener('keydown',event=>{if(event.key.toLowerCase()==='r')document.querySelector('#overview').click()});
     async function start(){
       try{
-        const parts=await Promise.all(['Build/web.data.unityweb.part-aa','Build/web.data.unityweb.part-ab'].map(async url=>{const response=await fetch(url);if(!response.ok)throw new Error('Stadium data request failed: '+response.status);return response.arrayBuffer()}));
+        const manifest=await fetch('Build/web-data.json').then(response=>{if(!response.ok)throw new Error('Data manifest failed: '+response.status);return response.json()});
+        const parts=[];let loaded=0;
+        for(const chunk of manifest.chunks){
+          const response=await fetch(chunk.url);if(!response.ok)throw new Error('Stadium data request failed: '+response.status);
+          const reader=response.body.getReader();
+          while(true){const {done,value}=await reader.read();if(done)break;parts.push(value);loaded+=value.length;progress(loaded/manifest.total_size*90)}
+        }
         config.dataUrl=URL.createObjectURL(new Blob(parts,{type:'application/octet-stream'}));
-        game=await createUnityInstance(canvas,config,p=>{document.querySelector('#bar').style.width=(p*100)+'%';document.querySelector('#percent').textContent=Math.round(p*100)+'%'});
+        document.querySelector('#loadsub').textContent='Starting the renderer';
+        game=await createUnityInstance(canvas,config,p=>progress(90+p*10));
         document.querySelector('#loading').classList.add('done');canvas.focus();window.wrexhamReady=true;
       }catch(error){document.querySelector('#error').style.display='grid';document.querySelector('#errorText').textContent=String(error);console.error(error)}
     }

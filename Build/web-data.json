@@ -1,0 +1,14 @@
+{
+  "total_size": 96715373,
+  "sha256": "c726ad97f2ba99a1af63f51c01c46a3b0aab0c0b544c8802097cf26efd490c57",
+  "chunks": [
+    {
+      "url": "Build/web.data.unityweb.part-00",
+      "size": 83886080
+    },
+    {
+      "url": "Build/web.data.unityweb.part-01",
+      "size": 12829293
+    }
+  ]
+}
