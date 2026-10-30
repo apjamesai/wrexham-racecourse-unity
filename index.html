@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#182d32">
+  <title>Racecourse in Golden Light</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#b9d7df;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff}
+    #unity-canvas{display:block;width:100%;height:100%;outline:none}
+    .top{position:fixed;left:clamp(18px,4vw,54px);top:clamp(18px,4vw,42px);pointer-events:none;text-shadow:0 2px 18px #17313a55}
+    .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:750;opacity:.88;margin-bottom:8px}
+    h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(28px,4vw,54px);line-height:1;margin:0;letter-spacing:-.025em}
+    .sub{font-size:13px;opacity:.85;margin-top:10px}
+    .controls{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:7px;padding:7px;border:1px solid #ffffff40;border-radius:999px;background:#183139b8;box-shadow:0 10px 35px #10252d35;backdrop-filter:blur(16px)}
+    button{appearance:none;border:0;border-radius:999px;padding:10px 17px;background:transparent;color:#fff;font:600 12px inherit;cursor:pointer;transition:background .2s}button:hover,button:focus-visible{background:#ffffff22;outline:none}button.active{background:#f4ead9;color:#253c41}
+    .hint{position:fixed;right:clamp(16px,3vw,38px);bottom:34px;font-size:11px;opacity:.8;text-shadow:0 1px 8px #17313a}
+    #loading{position:fixed;inset:0;display:grid;place-content:center;text-align:center;background:linear-gradient(155deg,#244b52,#cc7959);transition:opacity .6s;z-index:5}
+    #loading.done{opacity:0;pointer-events:none}.dragon{font-family:Georgia,serif;font-size:42px;margin-bottom:15px}.loadtitle{font-family:Georgia,serif;font-size:26px}.loadsub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.72;margin:12px 0 25px}
+    .track{height:3px;width:min(300px,65vw);background:#ffffff25;border-radius:4px;overflow:hidden}.bar{height:100%;width:0;background:#fff4d9;transition:width .2s}#percent{font-size:11px;margin-top:12px;opacity:.8}
+    #error{display:none;position:fixed;inset:0;place-content:center;padding:30px;text-align:center;background:#203c43;z-index:10}#error p{max-width:600px;line-height:1.6}
+    @media(max-width:700px){.hint{display:none}.sub{font-size:12px}.controls{bottom:18px}button{padding:9px 13px}}
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" tabindex="0"></canvas>
+  <div class="top"><div class="eyebrow">Wrexham · Cymru</div><h1>Racecourse in Golden Light</h1><div class="sub">A painted, interactive stadium study</div></div>
+  <div class="controls" aria-label="Camera views"><button id="overview" class="active">Overview</button><button id="pitch">Pitch</button><button id="stand">Stand</button></div>
+  <div class="hint">Drag to orbit · Scroll to zoom · R to reset</div>
+  <div id="loading"><div class="dragon">Y Ddraig Goch</div><div class="loadtitle">Painting the Racecourse</div><div class="loadsub">Preparing the ground in golden light</div><div class="track"><div class="bar" id="bar"></div></div><div id="percent">0%</div></div>
+  <div id="error"><div><h2>Unable to start the 3D scene</h2><p id="errorText">This experience needs a browser with WebGL 2 enabled.</p></div></div>
+  <script src="Build/web.loader.js"></script>
+  <script>
+    const canvas=document.querySelector('#unity-canvas');
+    const config={dataUrl:'Build/web.data.unityweb',frameworkUrl:'Build/web.framework.js.unityweb',codeUrl:'Build/web.wasm.unityweb',streamingAssetsUrl:'StreamingAssets',companyName:'Local Studio',productName:'Racecourse in Golden Light',productVersion:'1.0'};
+    let game;
+    function view(name){if(game)game.SendMessage('CameraRig','SetView',name);document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.id===name));canvas.focus()}
+    document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>view(b.id)));
+    createUnityInstance(canvas,config,p=>{document.querySelector('#bar').style.width=(p*100)+'%';document.querySelector('#percent').textContent=Math.round(p*100)+'%'}).then(instance=>{game=instance;document.querySelector('#loading').classList.add('done');canvas.focus();window.wrexhamReady=true}).catch(error=>{document.querySelector('#error').style.display='grid';document.querySelector('#errorText').textContent=String(error);console.error(error)});
+  </script>
+</body>
+</html>
