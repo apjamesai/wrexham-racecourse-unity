@@ -32,7 +32,7 @@
   <script src="Build/web.loader.js"></script>
   <script>
     const canvas=document.querySelector('#unity-canvas');
-    const config={dataUrl:'Build/web.data.unityweb',frameworkUrl:'Build/web.framework.js.unityweb',codeUrl:'Build/web.wasm.unityweb',streamingAssetsUrl:'StreamingAssets',companyName:'Local Studio',productName:'Racecourse in Golden Light',productVersion:'1.0'};
+    const config={dataUrl:'https://github.com/apjamesai/wrexham-racecourse-unity/releases/download/webgl-v1/web.data.unityweb',frameworkUrl:'Build/web.framework.js.unityweb',codeUrl:'Build/web.wasm.unityweb',streamingAssetsUrl:'StreamingAssets',companyName:'Local Studio',productName:'Racecourse in Golden Light',productVersion:'1.0'};
     let game;
     function view(name){if(game)game.SendMessage('CameraRig','SetView',name);document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.id===name));canvas.focus()}
     document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>view(b.id)));
