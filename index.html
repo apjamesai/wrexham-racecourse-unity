@@ -7,7 +7,7 @@
   <title>Racecourse in Golden Light</title>
   <style>
     *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#b9d7df;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff}
-    #unity-canvas{display:block;width:100%;height:100%;outline:none}
+    #unity-canvas{display:block;width:100%;height:100%;outline:none;touch-action:none}
     .top{position:fixed;left:clamp(18px,4vw,54px);top:clamp(18px,4vw,42px);pointer-events:none;text-shadow:0 2px 18px #17313a55}
     .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:750;opacity:.88;margin-bottom:8px}
     h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(28px,4vw,54px);line-height:1;margin:0;letter-spacing:-.025em}
@@ -19,6 +19,7 @@
     #loading.done{opacity:0;pointer-events:none}.dragon{font-family:Georgia,serif;font-size:42px;margin-bottom:15px}.loadtitle{font-family:Georgia,serif;font-size:26px}.loadsub{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.72;margin:12px 0 25px}
     .track{height:3px;width:min(300px,65vw);background:#ffffff25;border-radius:4px;overflow:hidden}.bar{height:100%;width:0;background:#fff4d9;transition:width .2s}#percent{font-size:11px;margin-top:12px;opacity:.8}
     #error{display:none;position:fixed;inset:0;place-content:center;padding:30px;text-align:center;background:#203c43;z-index:10}#error p{max-width:600px;line-height:1.6}
+    #touchUI{display:none;pointer-events:none}body.touch.walking #touchUI{display:block}.stick,.look{position:fixed;bottom:100px;width:86px;height:86px;border:1px solid #ffffff55;border-radius:50%;background:#18313955;color:#ffffffaa;display:grid;place-content:center;font-size:10px;letter-spacing:.14em}.stick{left:26px}.look{right:26px}
     @media(max-width:700px){.hint{display:none}.sub{font-size:12px}.controls{bottom:18px}button{padding:9px 13px}}
   </style>
 </head>
@@ -27,6 +28,7 @@
   <div class="top"><div class="eyebrow">Wrexham · Cymru</div><h1>Racecourse in Golden Light</h1><div class="sub">A painted, interactive stadium study</div></div>
   <div class="controls" aria-label="Camera views"><button id="overview" class="active">Overview</button><button id="pitch">Pitch</button><button id="stand">Stand</button><button id="walk">Walk</button></div>
   <div class="hint" id="hint">Drag to orbit · Scroll to zoom · R to reset</div>
+  <div id="touchUI"><div class="stick">MOVE</div><div class="look">LOOK</div></div>
   <div id="loading"><div class="dragon">Y Ddraig Goch</div><div class="loadtitle">Painting the Racecourse</div><div class="loadsub" id="loadsub">Downloading the detailed stadium</div><div class="track"><div class="bar" id="bar"></div></div><div id="percent">0%</div></div>
   <div id="error"><div><h2>Unable to start the 3D scene</h2><p id="errorText">This experience needs a browser with WebGL 2 enabled.</p></div></div>
   <script src="Build/web.loader.js"></script>
@@ -34,10 +36,28 @@
     const canvas=document.querySelector('#unity-canvas');
     const config={dataUrl:'',frameworkUrl:'Build/web.framework.js.unityweb',codeUrl:'Build/web.wasm.unityweb',streamingAssetsUrl:'StreamingAssets',companyName:'Local Studio',productName:'Racecourse in Golden Light',productVersion:'1.0'};
     let game;
+    const touchDevice=matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
+    document.body.classList.toggle('touch',touchDevice);
     function progress(value){const percent=Math.min(100,Math.round(value));document.querySelector('#bar').style.width=percent+'%';document.querySelector('#percent').textContent=percent+'%'}
-    function view(name){if(game)game.SendMessage('CameraRig','SetView',name);document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.id===name));document.querySelector('#hint').textContent=name==='walk'?'WASD / arrows to move · Mouse to look · Shift to hurry · R for overview':'Drag to orbit · Scroll to zoom · R to reset';canvas.focus()}
+    function view(name){if(game)game.SendMessage('CameraRig','SetView',name);document.body.classList.toggle('walking',name==='walk');document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.id===name));document.querySelector('#hint').textContent=name==='walk'?(touchDevice?'Left side to move · Right side to look':'WASD / arrows to move · Mouse to look · Shift to hurry · R for overview'):'Drag to orbit · Scroll to zoom · R to reset';canvas.focus()}
     document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>view(b.id)));
     document.addEventListener('keydown',event=>{if(event.key.toLowerCase()==='r')document.querySelector('#overview').click()});
+    let moveGesture=null,lookGesture=null;
+    function endGesture(event){
+      if(moveGesture&&event.pointerId===moveGesture.id){moveGesture=null;if(game)game.SendMessage('CameraRig','SetMoveVector','0,0')}
+      if(lookGesture&&event.pointerId===lookGesture.id)lookGesture=null;
+    }
+    canvas.addEventListener('pointerdown',event=>{
+      if(!touchDevice||!game||!document.body.classList.contains('walking'))return;
+      event.preventDefault();canvas.setPointerCapture(event.pointerId);
+      if(event.clientX<window.innerWidth*.45){if(!moveGesture)moveGesture={id:event.pointerId,x:event.clientX,y:event.clientY}}else if(!lookGesture)lookGesture={id:event.pointerId,x:event.clientX,y:event.clientY};
+    });
+    canvas.addEventListener('pointermove',event=>{
+      if(!game)return;
+      if(moveGesture&&event.pointerId===moveGesture.id){event.preventDefault();const x=Math.max(-1,Math.min(1,(event.clientX-moveGesture.x)/100)),y=Math.max(-1,Math.min(1,(moveGesture.y-event.clientY)/100));game.SendMessage('CameraRig','SetMoveVector',x+','+y)}
+      else if(lookGesture&&event.pointerId===lookGesture.id){event.preventDefault();const dx=event.clientX-lookGesture.x,dy=event.clientY-lookGesture.y;lookGesture.x=event.clientX;lookGesture.y=event.clientY;game.SendMessage('CameraRig','SetLookDelta',dx+','+dy)}
+    });
+    ['pointerup','pointercancel','lostpointercapture'].forEach(name=>canvas.addEventListener(name,endGesture));
     async function start(){
       try{
         const manifest=await fetch('Build/web-data.json').then(response=>{if(!response.ok)throw new Error('Data manifest failed: '+response.status);return response.json()});
@@ -50,6 +70,7 @@
         config.dataUrl=URL.createObjectURL(new Blob(parts,{type:'application/octet-stream'}));
         document.querySelector('#loadsub').textContent='Starting the renderer';
         game=await createUnityInstance(canvas,config,p=>progress(90+p*10));
+        if(touchDevice)game.SendMessage('CameraRig','SetMobileControls','1');
         document.querySelector('#loading').classList.add('done');canvas.focus();window.wrexhamReady=true;
       }catch(error){document.querySelector('#error').style.display='grid';document.querySelector('#errorText').textContent=String(error);console.error(error)}
     }
