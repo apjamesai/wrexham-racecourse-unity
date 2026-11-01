@@ -1,0 +1,36 @@
+{
+  "fixture": "Wrexham AFC 4-1 Preston North End",
+  "date": "2026-10-17",
+  "competition": "EFL Championship, matchday 11",
+  "attendance": 10614,
+  "scorer": "Kieffer Moore",
+  "shirt_number": 19,
+  "height_metres": 1.96,
+  "minute": 63,
+  "assist": "Callum Doyle, number 2, low free-kick",
+  "finish": "Left-footed flick from the centre of the box into the bottom-right corner",
+  "goal_end": "SToK / Tech End, identified from the wide replay's stadium geography",
+  "video": "https://www.youtube.com/watch?v=wAbfpnr8jAo",
+  "frames": [
+    {"file": "official-free-kick-wide.png", "evidence": "Wide replay of the free-kick just outside the penalty area, Doyle preparing the low delivery, players in the box, lime-green goalkeeper, densely occupied stand"},
+    {"file": "official-goal-finish.png", "evidence": "Official caption: It's turned in, and Moore's goal, his fifth of the season"},
+    {"file": "official-after-goal.png", "evidence": "4-1 on screen, Moore near the goal with one arm raised, teammates approaching, goalkeeper in lime green, Preston blue and yellow"},
+    {"file": "official-moore-crop.png", "evidence": "Close crop of Moore moving towards the goal-side crowd with one arm raised"},
+    {"file": "official-preston-kit.png", "evidence": "Preston blue shirt, shorts and socks with yellow collar/cuff details"},
+    {"file": "match-action.jpg", "evidence": "Actual Wrexham red home kit, white shoulder stripes, white shorts, white socks with red turnovers, Macron and current sponsor details; not used as Moore's likeness"},
+    {"file": "moore-reference.jpg", "evidence": "Moore's actual general appearance: tall adult, light skin, dark swept-back hair and facial hair; low-resolution reference only"}
+  ],
+  "reports": [
+    "https://www.skysports.com/football/news/13592743/wrexham-4-1-preston-ben-whiteman-scores-as-red-dragons-thump-four",
+    "https://www.skysports.com/football/wrexham-vs-preston-north-end/live/560629",
+    "https://www.espn.com/soccer/lineups/_/gameId/401880209",
+    "https://www.espn.com/soccer/match/_/gameId/401880209/preston-north-end-wrexham"
+  ],
+  "reconstruction_limits": [
+    "Player anatomy, face geometry and cloth are procedural approximations guided by evidence, not scans or photoreal likenesses.",
+    "Player positions are reconstructed from the wide replay, not optical tracking data.",
+    "Crowd occupancy, individual faces and gestures are illustrative and must not be represented as an exact spectator map.",
+    "The original 1 October stadium model is preserved; its construction state is not independently re-surveyed for 17 October.",
+    "The scene is an artistic Unity reconstruction, not actual match footage or a recovered 3D broadcast camera solve."
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "title": "Moore 63\u2032 \u2014 Wrexham 4\u20131 Preston North End",
+  "date": "2026-10-17",
+  "goal": {
+    "scorer": "Kieffer Moore",
+    "shirt_number": 19,
+    "minute": 63,
+    "assist": "Callum Doyle, number 2, low free-kick",
+    "finish": "Left-footed flick into the bottom-right corner",
+    "goal_end": "SToK / Tech End"
+  },
+  "approved_master_sha256": "046f927699bd74a20132be4d0189679cc953d3b977da72953b97168d1756aa7d",
+  "source_camera_count": 197,
+  "final_images_are_unity_renders": true,
+  "images": [
+    {
+      "scene": "P0",
+      "png": "P0.png",
+      "webp": "P0.webp",
+      "png_sha256": "29e36305a0de490dc71b4d7dda4735a09d3a40231c4788d4a1a485837842ea08",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    },
+    {
+      "scene": "P1",
+      "png": "P1.png",
+      "webp": "P1.webp",
+      "png_sha256": "8847b831a7c8ee1d5ab22a1d2164a5d59eb50476bf345f2974a138c7537a6693",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    },
+    {
+      "scene": "P2",
+      "png": "P2.png",
+      "webp": "P2.webp",
+      "png_sha256": "53788a76e733dc0c1919c5939059d2826724a712d0de3b9a42992df0693f29d0",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    },
+    {
+      "scene": "P3",
+      "png": "P3.png",
+      "webp": "P3.webp",
+      "png_sha256": "34e1ff6e97db46de6254f1dc6173e802d64fe18548c9767a946c2631c512cc85",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    },
+    {
+      "scene": "P4",
+      "png": "P4.png",
+      "webp": "P4.webp",
+      "png_sha256": "586c4170a4fe4f34fbaa14af87eab71d03be462ea23ab4937e7153ccde1bb94b",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    },
+    {
+      "scene": "P5",
+      "png": "P5.png",
+      "webp": "P5.webp",
+      "png_sha256": "4b7729553f01651db5d175a984e9105ebcfdb2329e0510948285d03951a48c45",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    },
+    {
+      "scene": "P6",
+      "png": "P6.png",
+      "webp": "P6.webp",
+      "png_sha256": "0a73dbe3ccc39c3a743c87e4606767cb4db9527afe7b2cb38bed2a7d8e7e6a9c",
+      "dimensions": [
+        2700,
+        4800
+      ],
+      "renderer": "Unity 6.3, Built-in pipeline, Post Processing Stack 3.5.4"
+    }
+  ],
+  "evidence": {
+    "official_highlights": "https://www.youtube.com/watch?v=wAbfpnr8jAo",
+    "match_report": "https://www.skysports.com/football/news/13592743/wrexham-4-1-preston-ben-whiteman-scores-as-red-dragons-thump-four",
+    "lineups": "https://www.espn.com/soccer/lineups/_/gameId/401880209"
+  },
+  "limitations": [
+    "Stylised reconstruction, not match footage, motion capture, optical tracking, or photogrammetric identity scans.",
+    "Player anatomy, faces, cloth, exact positions and crowd occupancy are approximate and are not asserted to be exact.",
+    "The original approved stadium master is unchanged; the separate architectural fork contains inferred corrections.",
+    "WebP files are downscaled copies of the unchanged Unity PNG renders for browser delivery."
+  ]
+}

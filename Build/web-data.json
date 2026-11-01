@@ -1,6 +1,6 @@
 {
-  "total_size": 217100815,
-  "sha256": "d154f000b4bbc0347977e06307d7e836024f365efaf60c9ce6ed7884bc532c03",
+  "total_size": 242418915,
+  "sha256": "b60de47f7110842ae983d43101e1802049e48d10f8ec95dc5d4c9f9da3bbcece",
   "chunks": [
     {
       "url": "Build/web.data.unityweb.part-00",
@@ -12,7 +12,7 @@
     },
     {
       "url": "Build/web.data.unityweb.part-02",
-      "size": 49328655
+      "size": 74646755
     }
   ]
 }

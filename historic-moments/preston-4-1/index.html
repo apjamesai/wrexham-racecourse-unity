@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d1b2a">
+  <title>Moore 63′ · Wrexham 4–1 Preston · Historic Moments</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d1b2a;color:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}button:focus-visible,a:focus-visible{outline:2px solid #ffd100;outline-offset:5px}
+    #backdrop{position:fixed;inset:-25px;background:center/cover;filter:blur(24px) brightness(.34);transform:scale(1.08)}
+    #art{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .45s}#art.ready{opacity:1}
+    .shade{position:fixed;inset:0;pointer-events:none;background:linear-gradient(#08132155 0%,transparent 27%,transparent 53%,#081321aa 100%)}
+    .header{position:fixed;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px);top:max(18px,env(safe-area-inset-top));display:flex;align-items:center;gap:16px;z-index:3}
+    .brand{font-family:Georgia,serif;font-size:clamp(18px,2vw,25px);line-height:1.1}.brand small{display:block;font:650 10px/1.6 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:#ffd100;margin-bottom:5px}
+    .header nav{margin-left:auto;display:flex;gap:9px}.header a,.header button{color:#fff;background:#0d1b2ac9;border:1px solid #ffffff26;padding:10px 15px;border-radius:999px;text-decoration:none;font-size:12px;cursor:pointer;backdrop-filter:blur(12px)}
+    .header a:hover,.header button:hover{background:#ffffff20}.main{position:fixed;inset:0;pointer-events:none}.minute{position:absolute;left:clamp(16px,4vw,64px);top:22%;font-family:Georgia,serif;font-size:clamp(65px,10vw,140px);line-height:.8;color:#fff;text-shadow:0 5px 30px #08132180}.minute small{display:block;font:650 11px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.2em;margin-top:20px;text-transform:uppercase}
+    .bottom{position:fixed;bottom:max(23px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(740px,calc(100% - 32px));z-index:3}
+    .card{background:#0d1b2aeb;border:1px solid #ffffff1f;backdrop-filter:blur(18px);border-radius:19px;padding:clamp(18px,3vw,29px);box-shadow:0 18px 70px #02081066}
+    .eyebrow{color:#ffd100;font-size:10px;font-weight:750;letter-spacing:.18em;text-transform:uppercase;margin-bottom:9px}.card h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(25px,4vw,39px);line-height:1.07;margin:0 0 12px}.card p{font-size:clamp(14px,1.5vw,17px);line-height:1.65;color:#f2f4f6;margin:0;white-space:pre-line}
+    .actions{display:flex;gap:10px;align-items:center;margin-top:19px}.next,.previous{border:0;border-radius:11px;padding:12px 18px;font-size:13px;font-weight:700;cursor:pointer}.next{background:#ba0c2f;color:#fff;flex:1}.next:hover{background:#d51c43}.previous{background:#ffffff10;color:#fff}.previous:disabled{opacity:.3;cursor:default}.artlink{font-size:11px;color:#ffffffb3;text-decoration:none;white-space:nowrap}.artlink:hover{color:#fff}
+    .progress{display:flex;gap:5px;margin-bottom:12px}.progress button{height:4px;flex:1;border:0;padding:0;background:#ffffff35;border-radius:4px;cursor:pointer}.progress button.on{background:#ffd100}.step{display:flex;justify-content:space-between;color:#ffffffa6;font-size:10px;margin-top:9px;letter-spacing:.05em}
+    #loading{position:fixed;inset:0;display:grid;place-content:center;background:#0d1b2a;z-index:6;transition:opacity .4s}#loading.done{opacity:0;pointer-events:none}.loadtext{text-align:center;font-family:Georgia,serif;font-size:27px}.loadtext small{display:block;font:11px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ffd100;margin-top:13px}
+    dialog{color:#fff;background:#0d1b2a;border:1px solid #ffffff2b;border-radius:19px;max-width:min(620px,calc(100% - 32px));padding:28px;line-height:1.6;box-shadow:0 30px 120px #0009}dialog::backdrop{background:#020810ba;backdrop-filter:blur(5px)}dialog h2{font-family:Georgia,serif;font-weight:400;margin-top:0}dialog p,dialog li{font-size:13px;color:#e0e5eb}dialog a{color:#ffd100}dialog button{float:right;background:#ffffff12;border:1px solid #ffffff26;color:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+    @media(max-width:700px){.header{gap:10px}.header a,.header button{padding:9px 11px;font-size:11px}.brand{font-size:16px}.brand small{font-size:8px}.header .home{display:none}.minute{top:17%;font-size:70px}.minute small{font-size:9px}.card{padding:18px}.card h1{font-size:27px}.card p{font-size:14px}.artlink{display:none}.bottom{bottom:max(16px,env(safe-area-inset-bottom))}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div id="backdrop"></div><img id="art" alt=""><div class="shade"></div>
+  <header class="header"><div class="brand"><small>Historic Moments · Wrexham AFC</small>Moore 63′</div><nav><a class="home" href="../../">Explore the stadium</a><button id="evidence" type="button">Evidence &amp; notes</button></nav></header>
+  <main class="main"><div class="minute">63′<small>Wrexham 4–1 Preston</small></div></main>
+  <section class="bottom" aria-label="Story reader"><div class="progress" id="progress" aria-label="Story progress"></div><article class="card"><div class="eyebrow" id="eyebrow"></div><h1 id="title"></h1><p id="narration"></p><div class="actions"><button class="previous" id="previous" type="button">Back</button><button class="next" id="next" type="button">Continue</button><a class="artlink" id="artlink" href="#" target="_blank" rel="noopener">Full-resolution Unity still ↗</a></div></article><div class="step"><span>17 October 2026 · Racecourse Ground</span><span id="counter"></span></div></section>
+  <div id="loading"><div class="loadtext">A Historic Moment<small>Preparing the Unity-rendered story</small></div></div>
+  <dialog id="notes"><button id="close" type="button" aria-label="Close evidence notes">Close</button><h2>Evidence &amp; reconstruction</h2><p>Wrexham beat Preston North End 4–1 at the Racecourse Ground on 17 October 2026. Attendance: 10,614. In the 63rd minute, Kieffer Moore, number 19, scored the fourth goal from Callum Doyle’s low free-kick.</p><ul><li><a href="https://www.youtube.com/watch?v=wAbfpnr8jAo" target="_blank" rel="noopener">Official EFL extended highlights</a></li><li><a href="https://www.skysports.com/football/news/13592743/wrexham-4-1-preston-ben-whiteman-scores-as-red-dragons-thump-four" target="_blank" rel="noopener">Sky Sports match report and goal sequence</a></li><li><a href="https://www.espn.com/soccer/lineups/_/gameId/401880209" target="_blank" rel="noopener">ESPN line-ups and player numbers</a></li></ul><p>Every story image is rendered in Unity using the approved stadium geometry. Player anatomy, poses, kit placement and crowd occupancy are stylised reconstructions, not optical tracking, a photogrammetric scan or a claim of exact identity for every spectator. The original stadium master is preserved separately.</p></dialog>
+  <script>
+    const pages=[
+      {image:'P0',eyebrow:'Championship · 17 October 2026',title:'A home afternoon in Wrexham',text:'The Racecourse Ground. Wrexham are 3–1 up against Preston North End. There is another moment waiting in this match.',alt:'A Unity-rendered view of the Racecourse Ground on match day.'},
+      {image:'P1',eyebrow:'63 minutes · Set piece',title:'Doyle over the ball',text:'Callum Doyle, number 2, stands over a free-kick. Kieffer Moore, number 19, waits in the centre of the box.',alt:'Callum Doyle prepares to take a free-kick with Kieffer Moore waiting in the box.'},
+      {image:'P2',eyebrow:'The delivery',title:'Low. Into the danger area.',text:'Doyle sends the free-kick in low. Moore reads it and moves to meet the ball.',alt:'A low free-kick travels towards Moore in the penalty area.'},
+      {image:'P3',eyebrow:'The finish',title:'The left-footed flick',text:'Moore gets the telling touch with his left foot, guiding the ball towards the bottom-right corner.',alt:'Kieffer Moore flicks the low delivery left-footed towards goal.'},
+      {image:'P4',eyebrow:'Goal · Wrexham 4–1 Preston',title:'Beyond the goalkeeper',text:'The ball finds the bottom corner. Moore’s finish makes it four for Wrexham.',alt:'The ball beats the diving goalkeeper and heads into the bottom corner.'},
+      {image:'P5',eyebrow:'Moore · Number 19',title:'A fifth goal of the season',text:'Kieffer Moore’s goal settles the contest. The official commentary marks his fifth goal of the season.',alt:'Kieffer Moore after scoring Wrexham’s fourth goal.'},
+      {image:'P6',eyebrow:'Full time · 4–1',title:'A Historic Moment, remembered',text:'Worrall 31′. Whiteman 42′. Smith 59′. Moore 63′.\nFour home goals. Three Championship points. 10,614 people at the Racecourse Ground.',alt:'A wide Unity-rendered view of the stadium after Wrexham’s fourth goal.'}
+    ];
+    let index=0,swipeStart=null;
+    const art=document.querySelector('#art');
+    function show(next){
+      index=Math.max(0,Math.min(pages.length-1,next));
+      const page=pages[index];
+      document.querySelector('#eyebrow').textContent=page.eyebrow;
+      document.querySelector('#title').textContent=page.title;
+      document.querySelector('#narration').textContent=page.text;
+      document.querySelector('#counter').textContent=(index+1)+' / '+pages.length;
+      document.querySelector('#previous').disabled=index===0;
+      document.querySelector('#next').textContent=index===pages.length-1?'Read from the beginning':'Continue';
+      document.querySelector('#artlink').href=page.image+'.png';
+      art.alt=page.alt;
+      art.classList.remove('ready');
+      art.onload=()=>{art.classList.add('ready');document.querySelector('#loading').classList.add('done')};
+      art.src=page.image+'.webp';
+      document.querySelector('#backdrop').style.backgroundImage='url('+page.image+'.webp)';
+      document.querySelectorAll('#progress button').forEach((button,i)=>{button.classList.toggle('on',i===index);button.setAttribute('aria-current',i===index?'step':'false')});
+      document.querySelector('.minute').style.display=index===0?'block':'none';
+      window.scrollTo(0,0);
+    }
+    const progress=document.querySelector('#progress');
+    pages.forEach((page,i)=>{const button=document.createElement('button');button.type='button';button.setAttribute('aria-label','Scene '+(i+1)+': '+page.title);button.addEventListener('click',()=>show(i));progress.appendChild(button)});
+    document.querySelector('#next').addEventListener('click',()=>show(index===pages.length-1?0:index+1));
+    document.querySelector('#previous').addEventListener('click',()=>show(index-1));
+    document.querySelector('#evidence').addEventListener('click',()=>document.querySelector('#notes').showModal());
+    document.querySelector('#close').addEventListener('click',()=>document.querySelector('#notes').close());
+    document.querySelector('#notes').addEventListener('click',event=>{if(event.target===event.currentTarget)event.currentTarget.close()});
+    document.addEventListener('keydown',event=>{if(document.querySelector('#notes').open)return;if(event.key==='ArrowRight')show(index+1);if(event.key==='ArrowLeft')show(index-1);if(event.key==='Escape')document.querySelector('#notes').close()});
+    document.addEventListener('pointerdown',event=>{if(event.target.closest('button,a,dialog'))return;event.preventDefault();swipeStart={id:event.pointerId,x:event.clientX}});
+    document.addEventListener('pointerup',event=>{if(!swipeStart||event.pointerId!==swipeStart.id)return;const dx=event.clientX-swipeStart.x;if(Math.abs(dx)>60)show(index+(dx<0?1:-1));swipeStart=null});
+    document.addEventListener('pointercancel',()=>swipeStart=null);
+    show(0);
+  </script>
+</body>
+</html>
